@@ -1,3 +1,6 @@
+Date:27/06/2025
+work on basic vue cdn way ,component and props,lists and conditional examples
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,5 +69,32 @@
   </script>
 </body>
 </html>
+<div id="app">
+  <h3>My Tasks</h3>
+  <ul>
+    <li v-for="task in tasks" :key="task.id">
+      <span v-if="task.done">✅</span>
+      <span v-else>⬜</span>
+      {{ task.name }}
+    </li>
+  </ul>
+</div>
+
+<script>
+const { createApp } = Vue;
+
+createApp({
+  data() {
+    return {
+      tasks: [
+        { id: 1, name: 'Learn Vue', done: true },
+        { id: 2, name: 'Build App', done: false },
+        { id: 3, name: 'Deploy App', done: false }
+      ]
+    };
+  }
+}).mount('#app');
+</script>
+
 
 # vue-learning-SreeCharan-
