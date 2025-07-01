@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="app">
+       <h1> {{name}}</h1>
+        <button v-on:click="name='SreeCharan Donipelly'">Change Name</button>
+        <h1>{{count}}</h1>
+        <div>
+            <button v-on:click="increment(1)">Increment1</button>
+                        <button v-on:click="increment(5)">Increment5</button>
+
+                        <button v-on:click="decrement(1)">decrement1</button>
+                                                <button v-on:click="decrement(5)">decrement5</button>
+
+
+
+        </div>
+
+    </div>
+<script>
+        Vue.createApp({
+            data()
+            {
+                return {
+                    name:"charan",
+                    count:0
+                    
+                }
+            },
+            methods:
+            {
+                increment(num)
+                {
+                    this.count +=num
+                }
+                ,
+                decrement(num)
+                {
+                    if(this.count>0)
+                {
+                    this.count -=num
+                }
+                }
+            }
+
+        }).mount('#app')
+
+
+    </script>
+</body>
+</html>

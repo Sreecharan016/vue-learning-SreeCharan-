@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue CDN Communication Example</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h2>Parent Component</h2>
+    <p>Message from Child: {{ childMessage }}</p>
+
+    <child-component
+      :message="parentMessage"
+      @update-message="handleUpdate"
+    ></child-component>
+  </div>
+
+  <script>
+    const ChildComponent = {
+      props: ['message'],
+      template: `
+        <div style="margin-top: 1em;">
+          <h3>Child Component</h3>
+          <p>Received from parent: {{ message }}</p>
+          <input v-model="newMessage" placeholder="Send message to parent" />
+          <button @click="sendToParent">Send</button>
+        </div>
+      `,
+      data() {
+        return {
+          newMessage: ''
+        };
+      },
+      methods: {
+        sendToParent() {
+          this.$emit('update-message', this.newMessage);
+          this.newMessage = '';
+        }
+      }
+    };
+
+    const app = Vue.createApp({
+      components: {
+        ChildComponent
+      },
+      data() {
+        return {
+          parentMessage: 'Hello Child!',
+          childMessage: ''
+        };
+      },
+      methods: {
+        handleUpdate(msg) {
+          this.childMessage = msg;
+        }
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
