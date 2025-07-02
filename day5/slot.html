@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!-- Vue 3 CDN -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    .card {
+      border: 1px solid #ccc;
+      padding: 16px;
+      margin: 10px;
+      border-radius: 6px;
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+  <custom-card>
+    <p>This is dynamic content inserted into the slot.</p>
+  </custom-card>
+
+  <custom-card>
+    <ul>
+      <li>Vue</li>
+      <li>React</li>
+      <li>Angular</li>
+    </ul>
+  </custom-card>
+</div>
+
+<script>
+  const { createApp } = Vue;
+
+  createApp({
+    components: {
+      'custom-card': {
+        template: `
+          <div class="card">
+            <h3>Reusable Card Component</h3>
+            <slot></slot> <!-- Placeholder for custom content -->
+          </div>
+        `
+      }
+    }
+  }).mount('#app');
+</script>
+
+</body>
+</html>
