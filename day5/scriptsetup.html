@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <style>
+    body {
+      font-family: Avenir, Helvetica, sans-serif;
+      padding: 2rem;
+      text-align: center;
+    }
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <h1>Vue 3 + CDN + Composition API</h1>
+    <p>Count: {{ count }}</p>
+    <button @click="increment">Increment</button>
+  </div>
+
+  <script type="module">
+    const { createApp, ref } = Vue;
+
+    createApp({
+      setup() {
+        const count = ref(0);
+        const increment = () => count.value++;
+        return { count, increment };
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
