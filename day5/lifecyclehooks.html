@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+<div id="app">
+  <h2>Count: {{ count }}</h2>
+  <button @click="increment">Increment</button>
+
+  <div>
+    <h3>Lifecycle Logs:</h3>
+    <ul>
+      <li v-for="log in logs" :key="log">{{ log }}</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const { createApp, ref, onBeforeMount, onMounted, onBeforeUpdate, onUpdated, onBeforeUnmount, onUnmounted } = Vue;
+
+createApp({
+  setup() {
+    const count = ref(0);
+    const logs = ref([]);
+
+    function log(message) {
+      logs.value.push(message);
+    }
+
+    onBeforeMount(() => log('onBeforeMount called'));
+    onMounted(() => log('onMounted called'));
+    onBeforeUpdate(() => log('onBeforeUpdate called'));
+    onUpdated(() => log('onUpdated called'));
+    onBeforeUnmount(() => log('onBeforeUnmount called'));
+    onUnmounted(() => log('onUnmounted called'));
+
+    function increment() {
+      count.value++;
+    }
+
+    return { count, increment, logs };
+  }
+}).mount('#app');
+</script>
+
+</body>
+</html>
